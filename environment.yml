@@ -1,0 +1,16 @@
+name: HSR_results
+channels:
+  - conda-forge
+  - defaults
+  - schrodinger
+  - anaconda
+dependencies:
+  - numpy
+  - scipy
+  - rdkit
+  - pymol
+  - anaconda::pyqt
+  - oddt
+  - pip
+  - pip:
+    - hsr

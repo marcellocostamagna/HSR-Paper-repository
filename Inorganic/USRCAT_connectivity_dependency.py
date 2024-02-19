@@ -12,9 +12,10 @@ cwd = os.getcwd()
 
 # PRE-PROCESSING
 molecules = load_molecules_from_sdf(f'{cwd}/connectivity_dependency.sdf', removeHs=False, sanitize=False)
-# mol1 --> Dative bonds = single bonds
-# mol2 --> Remove dative bond betwenn Co and O
-# mol3 --> Remove dative bond betwenn Co and O and Co and Ns
+# Trans-Platin
+# PtCl2(NH3)2 Pt-ligands bonds = single bonds
+# PtCl2(NH3)2 Pt-NH3 bonds REMOVED (no charge adjustment)
+# PtCl2(NH3)2 Pt-Cl bonds REMOVED (charge adjustment: Pt(2+), Cl(-))
 
 ### ROTATE MOLECULES ###
 rotated_molecules = []

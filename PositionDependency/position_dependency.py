@@ -20,8 +20,8 @@ def generate_all_single_deuterium_variants(molecule):
 
     for hydrogen in hydrogens:
         modified_molecule = deepcopy(molecule)
-        hydrogen_atom = modified_molecule.GetAtomWithIdx(hydrogen.GetIdx())  # Get the corresponding hydrogen in the copied molecule
-        hydrogen_atom.SetIsotope(2)  # Set isotope number to 2 for deuterium
+        hydrogen_atom = modified_molecule.GetAtomWithIdx(hydrogen.GetIdx())  
+        hydrogen_atom.SetIsotope(2) 
         modified_molecules.append(modified_molecule)
 
     return modified_molecules
@@ -30,7 +30,7 @@ cwd = os.getcwd()
 
 print(f'Position dependency of feature change')
 
-original_molecule = load_molecules_from_sdf(f'{cwd}/molecule.sdf', removeHs=False, sanitize=False)[0]
+original_molecule = load_molecules_from_sdf(f'{cwd}/original_molecule.sdf', removeHs=False, sanitize=False)[0]
 
 modified_molecules = generate_all_single_deuterium_variants(original_molecule)
 

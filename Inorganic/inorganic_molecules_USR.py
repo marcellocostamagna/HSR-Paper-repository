@@ -29,16 +29,16 @@ for file in sorted_files:
     for i in range(n_molecules):
         for j in range(i+1, n_molecules):
             similarity = compute_similarity(molecules[i], molecules[j])
-            print(f"(in-house) USR:: {similarity:.4f}")
+            print(f"(in-house) USR: {similarity:.4f}")
 
     usrs = [GetUSR(mol) for mol in rotated_molecules]
     for i in range(n_molecules):
         for j in range(i+1, n_molecules):
             similarity = GetUSRScore(usrs[i], usrs[j])
-            print(f"(rdkit) USR:: {similarity:.4f}")
+            print(f"(rdkit) USR: {similarity:.4f}")
             
     usrcats = [GetUSRCAT(mol) for mol in rotated_molecules]
     for i in range(n_molecules):
         for j in range(i+1, n_molecules):
             similarity = GetUSRScore(usrcats[i], usrcats[j])
-            print(f"(rdkit) USRCAT:: {similarity:.4f} \n")
+            print(f"(rdkit) USRCAT: {similarity:.4f} \n")

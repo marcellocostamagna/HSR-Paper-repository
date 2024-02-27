@@ -12,13 +12,13 @@ cwd = os.getcwd()
 molecule = load_molecules_from_sdf(f'{cwd}/original_molecule.sdf', removeHs=False, sanitize=False)[0]
 molecule
 # rotate the molecule
-angle1 = 0
-angle2 = 30
-angle3 = -35
+angle1 = 180
+angle2 = 90
+angle3 = 0
 mol = rotate_molecule(molecule, angle1, angle2, angle3)
 
 # translate the molecule with rdkit
-mol = translate_molecule(mol,0,0,2)
+mol = translate_molecule(mol,2,2,2)
 
 # Save the molecule
 # save the molecule to an SDF file

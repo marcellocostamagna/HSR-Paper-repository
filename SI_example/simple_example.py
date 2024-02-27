@@ -9,7 +9,7 @@ import os
 np.set_printoptions(precision=4, suppress=True)
 
 cwd = os.getcwd()
-# PRE-PROCESSING
+
 # List of molecules from SDF file
 molecules = load_molecules_from_sdf(f'{cwd}/simple_case.sdf', removeHs=False, sanitize=False)
 

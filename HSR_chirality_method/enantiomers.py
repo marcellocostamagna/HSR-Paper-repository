@@ -15,8 +15,8 @@ from usr import get_geometrical_center
 file_name = 'helicene_P.sdf'
 
 # Select chirality to be True or False
-# chirality = True
-chirality = False
+chirality = True
+# chirality = False
 
 cwd = os.getcwd()
 

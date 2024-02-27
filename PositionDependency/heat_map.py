@@ -12,9 +12,9 @@ def generate_all_single_deuterium_variants_and_compute_similarity(molecule, outp
     similarity_values = {}
 
     for i, hydrogen in enumerate(hydrogens):
-        modified_molecule = Chem.Mol(molecule)  # Deep copy of the molecule
+        modified_molecule = Chem.Mol(molecule)  
         hydrogen_atom = modified_molecule.GetAtomWithIdx(hydrogen.GetIdx())
-        hydrogen_atom.SetIsotope(2)  # Change to deuterium for the variant
+        hydrogen_atom.SetIsotope(2) 
 
         similarity = compute_similarity(molecule, modified_molecule)
         
@@ -47,8 +47,6 @@ sdf_output_path = os.path.join(cwd, f'{cwd}/tagged_molecule.sdf')
 # Generate deuterium variants, compute similarities, and tag hydrogens
 similarity_values = generate_all_single_deuterium_variants_and_compute_similarity(original_molecule, sdf_output_path)
 
-# print(f"Similarity values: {similarity_values}")
-
 import pymol
 from pymol import cmd
 from pymol.cgo import *
@@ -57,31 +55,24 @@ from pymol.cgo import *
 pymol.finish_launching()
 
 def similarity_to_color(similarity_values_dict):
-    # Convert similarity values from dict values to a list
     # round the similarity values to 4 decimal places
     for key, value in similarity_values_dict.items():
         similarity_values_dict[key] = round(value, 4)
     similarity_values = list(similarity_values_dict.values())
-    # print(f'similarity_values: {similarity_values}')
-    # print(len(similarity_values))
+
     unique_similarity_values = sorted(set(similarity_values))
-    
-    # print(f'unique_similarity_values: {unique_similarity_values}')
-    # print(len(unique_similarity_values))
-    
+
     # Normalize the similarity values to a [0, 1] range for color mapping
     min_val, max_val = min(similarity_values), max(similarity_values)
     normalized_unique_values = [(val - min_val) / (max_val - min_val) for val in unique_similarity_values]
-    # print(len(normalized_unique_values))
     # Apply a non-linear transformation to emphasize differences
-    emphasized_unique_values = [np.power(val, 2) for val in normalized_unique_values]  # Squaring to spread values
+    emphasized_unique_values = [np.power(val, 2) for val in normalized_unique_values]  
     
     # Create a color map from light blue to dark blue
     cmap = mcolors.LinearSegmentedColormap.from_list("grad", ["lightblue", "darkblue"])
     
     # Get corresponding color for each emphasized value
     unique_colors = [cmap(value) for value in emphasized_unique_values]
-    # print(len(unique_colors))
     
      # Map each original similarity value to its corresponding color
     value_to_color = {val: cmap(np.power((val - min_val) / (max_val - min_val), 2)) for val in unique_similarity_values}
@@ -105,7 +96,7 @@ def similarity_to_color(similarity_values_dict):
     ax.spines['left'].set_visible(False)
     ax.spines['bottom'].set_visible(False)
     
-    plt.tight_layout()  # Adjust layout to make room for the rotated x-tick labels
+    plt.tight_layout()  
     # save figure as svg
     plt.savefig(f'{os.getcwd()}/similarity_legend.svg', format='svg')
     plt.show()
@@ -119,21 +110,16 @@ cmd.load(sdf_output_path, 'tagged_molecule')
 rdkit_mol = Chem.SDMolSupplier(sdf_output_path)[0]
 
 coord_to_tag = {}
-for i in range(13):
+for i in range(14):
     tag = f"H_{i+1}"
     pos = [float(x) for x in rdkit_mol.GetProp(tag).split(',')]
     coord_to_tag[i] = [tag, pos]
-# print(f'coord_to_tag: {coord_to_tag}')
 
 # MAKING SPHERES FOR THE HYDROGENS
 # generate the colors for the hydrogen atoms
 colors = similarity_to_color(similarity_values)
 
-# for i in range(13):
-#     print(f'color: {colors[i][0], colors[i][1], colors[i][2]}')
-#     print(f'pos: {[coord_to_tag[i][1][0], coord_to_tag[i][1][1], coord_to_tag[i][1][2]]}')
-
-# create a list pf spheres with the correct coordinates and colors, and radius 1
+# create a list of spheres with the correct coordinates and colors, and radius 1
 d = 0.3
 obj =  [COLOR, colors[0][0], colors[0][1], colors[0][2],  SPHERE, coord_to_tag[0][1][0], coord_to_tag[0][1][1], coord_to_tag[0][1][2], d,
         COLOR, colors[1][0], colors[1][1], colors[1][2],  SPHERE, coord_to_tag[1][1][0], coord_to_tag[1][1][1], coord_to_tag[1][1][2], d,
@@ -147,7 +133,8 @@ obj =  [COLOR, colors[0][0], colors[0][1], colors[0][2],  SPHERE, coord_to_tag[0
         COLOR, colors[9][0], colors[9][1], colors[9][2],  SPHERE, coord_to_tag[9][1][0], coord_to_tag[9][1][1], coord_to_tag[9][1][2], d,
         COLOR, colors[10][0], colors[10][1], colors[10][2],  SPHERE, coord_to_tag[10][1][0], coord_to_tag[10][1][1], coord_to_tag[10][1][2], d,
         COLOR, colors[11][0], colors[11][1], colors[11][2],  SPHERE, coord_to_tag[11][1][0], coord_to_tag[11][1][1], coord_to_tag[11][1][2], d,
-        COLOR, colors[12][0], colors[12][1], colors[12][2],  SPHERE, coord_to_tag[12][1][0], coord_to_tag[12][1][1], coord_to_tag[12][1][2], d]
+        COLOR, colors[12][0], colors[12][1], colors[12][2],  SPHERE, coord_to_tag[12][1][0], coord_to_tag[12][1][1], coord_to_tag[12][1][2], d,
+        COLOR, colors[13][0], colors[13][1], colors[13][2],  SPHERE, coord_to_tag[13][1][0], coord_to_tag[13][1][1], coord_to_tag[13][1][2], d]
 
 # show the spheres
 cmd.load_cgo(obj, 'gradients')

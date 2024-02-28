@@ -3,7 +3,7 @@
 This folder contains scripts for experiments designed to show HSR ability to compare inorganic and organometallic molecules. 
 Three pairs of molecules are compared with the methods: *HSR*, *USR* and *USRCAT*.
 
-Ther is also a script to showcase the dependency of USRCAT on molecular connectivity. 
+There is also a script to showcase the dependency of USRCAT on molecular connectivity. 
 
 ## Instructions
 
@@ -24,6 +24,8 @@ python inorganic_molecules_USR.py
 ```
 
 *USRCAT's connectivity dependency*
+
+Run the command:
 
 ```bash
 python USRCAT_connectivity_dependency.py

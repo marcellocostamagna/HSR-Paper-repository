@@ -10,7 +10,7 @@ To get the image of the original molecule (Figure 2A (TODO:check consistency)) r
 pymol original_molecule.py
 ```
 
-To get the image of the transformed molecule (Figure 2B (TODO:check consistency))withe the Principla components and the reference points run the command:
+To get the image of the transformed molecule (Figure 2B (TODO:check consistency))withe the Principal Components and the reference points run the command:
 
 ```bash
 pymol transformed_molecule.py

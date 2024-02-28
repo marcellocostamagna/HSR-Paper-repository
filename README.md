@@ -24,7 +24,7 @@ It should appear the info: `hsr 0.1.0`(TODO: check it & update it).
 
 ### Run experiments
 
-This repository includes several folders containing data and scripts to reproduce the results presented inthe HSR paper[TODO:link to paper].
+This repository includes several folders containing data and scripts to reproduce the results presented in the HSR paper[TODO:link to paper].
 
 To run any experiment move to the respective folder:
 
@@ -34,7 +34,7 @@ cd folder_name
 
 and follow the instructions provided there.
 
-__REQUIREMENT__ : To run the DUD-E experiments you need to download the default [DUD-E database](https://dude.docking.org/) and move it to the DUD-E folder.
+**REQUIREMENT** : To run the DUD-E experiments you need to download the default [DUD-E database](https://dude.docking.org/) and move it to the DUD-E folder.
 
 
 ### Additional files

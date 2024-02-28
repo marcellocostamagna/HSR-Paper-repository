@@ -1,6 +1,6 @@
 ## Description
 
-This folder contains scripts for conducting enrichment factor experiments of the Database of Usefule Decoys: Enhanced (DUD_E) using three different packages: *HSR*,*RDKIT*, and *ODDT*
+This folder contains scripts for conducting enrichment factor experiments of the Database of Useful Decoys: Enhanced (DUD_E) using three different packages: *HSR*, *RDKIT*, and *ODDT*.
 
 ## Instructions
 

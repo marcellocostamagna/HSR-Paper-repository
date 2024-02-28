@@ -1,6 +1,6 @@
 ## Description
 
-This folder contains scripts to generate the images used fo Figure 3 (TODO: check consistency) in the HSR Paper (TODO: link), which show HSR method to distinguish chiral molecules.
+This folder contains scripts to generate the images used in Figure 3 (TODO: check consistency) in the HSR Paper (TODO: link), which show HSR method to distinguish chiral molecules.
 
 ## Instructions
 

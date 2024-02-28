@@ -12,6 +12,6 @@ n_molecules = len(molecules)
 print(f'\n(in-house) CSR Similarity of inorganic enantiomers:')
 
 similarity = compute_similarity(molecules[0], molecules[1])
-print(f"CSR: {similarity}")
+print(f"CSR: {similarity:.4f}")
 
 

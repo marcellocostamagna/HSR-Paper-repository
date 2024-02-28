@@ -9,7 +9,7 @@ sys.path.append(os.path.abspath('../'))
 from perturbations import *
 from usr import get_geometrical_center
 
-# MOLECULE SELCTION AND CHIRALITY
+# MOLECULE SELECTION AND CHIRALITY
 # Select one or the other to visualize an enantiomer at the time
 # file_name = 'helicene_M.sdf'
 file_name = 'helicene_P.sdf'

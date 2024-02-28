@@ -1,2 +1,52 @@
 # HSR-Paper-repository
-Repository collecting the scripts used to generate results shown in HSR paper
+
+This repository collects the scripts used to generate results shown in the HSR paper (TODO:Link).
+
+## Getting Started
+
+### Environment Setup
+
+Before running any experiments, make sure to create the appropriate conda environment by running the following command:
+
+```bash
+conda env create -f environment.yml
+conda activate HSR_results
+```
+
+You can test the correct build by running:
+
+```bash
+hsr -v
+```
+
+It should appear the info: `hsr 0.1.0`(TODO: check it & update it).
+
+
+### Run experiments
+
+This repository includes several folders containing data and scripts to reproduce the results presented inthe HSR paper[TODO:link to paper].
+
+To run any experiment move to the respective folder:
+
+```bash
+cd folder_name
+```
+
+and follow the instructions provided there.
+
+__REQUIREMENT__ : To run the DUD-E experiments you need to download the default [DUD-E database](https://dude.docking.org/) and move it to the DUD-E folder.
+
+
+### Additional files
+
+- usr.py: in-house implementation of the Ultrafast Shape Recognition (USR) method
+- csr.py: in-house implementation of the Chiral Shape Recognition (CSR) method
+- usr_optiso.py: in-house implementation of the USR:OptIso method
+- perturbations.py: scripts collecting diffferent functions to perform trasformations such as
+    - Translation of molecule coordinates
+    - Rotations of molecule coordinates
+    - Reflection of molecule coordinates (used to generate enantiomers)
+    - Scaling
+    - Permutation
+    - etc...
+

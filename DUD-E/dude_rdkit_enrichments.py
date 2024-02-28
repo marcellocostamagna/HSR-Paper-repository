@@ -5,7 +5,7 @@ from rdkit import Chem
 from rdkit.Chem.rdMolDescriptors import GetUSRCAT, GetUSRScore, GetUSR
 from multiprocessing import Pool
 
-MAX_CORES = 4
+MAX_CORES = 5
 
 def read_molecules_from_sdf(sdf_file):
     supplier = Chem.SDMolSupplier(sdf_file, removeHs=False, sanitize=False)
@@ -35,10 +35,6 @@ def compute_fingerprints(molecules, method):
 def process_folder(args):
     folder, root_directory, method, enrichment_factors = args
     print(f"\nProcessing folder: {folder}")
-    
-    # Ensure the directory for saving similar molecules exists
-    if not os.path.exists("similar_molecules_rdkit"):
-        os.makedirs("similar_molecules_rdkit")
 
     folder_path = os.path.join(root_directory, folder)
     folder_enrichments = {k: [] for k in enrichment_factors.keys()}

@@ -10,11 +10,14 @@ from perturbations import *
 cwd = os.getcwd()
 
 molecule = load_molecules_from_sdf(f'{cwd}/original_molecule.sdf', removeHs=False, sanitize=False)[0]
-molecule
+
+# center the molecule with rdkit
+molecule = center(molecule)
+
 # rotate the molecule
-angle1 = 180
-angle2 = 90
-angle3 = 0
+angle1 = 150
+angle2 = 30
+angle3 = 120
 mol = rotate_molecule(molecule, angle1, angle2, angle3)
 
 # translate the molecule with rdkit
@@ -35,9 +38,9 @@ molecule_path = f'{cwd}/molecule_xyz.sdf'
 cmd.load(molecule_path, 'molecule')
 
 w = 0.06 # cylinder width 
-x = 3 # cylinder length
+x = 4 # cylinder length
 y = 4 # cylinder length
-z = 5 # cylinder length
+z = 6 # cylinder length
 h = 0.25 # cone hight
 d = w * 1.618 # cone base diameter
 

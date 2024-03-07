@@ -322,3 +322,34 @@ def reflect_molecule_coordinate(molecule, coordinate='x'):
             conformer.SetAtomPosition(idx, (pos.x, pos.y, -pos.z))
 
     return mol_copy
+
+def center(molecule):
+    """
+    Center the molecule at the origin.
+    """
+    # Create a deep copy of the molecule
+    mol_copy = Chem.Mol(molecule)
+    
+    # Ensure the molecule has conformers
+    if not mol_copy.GetNumConformers():
+        raise ValueError("The provided molecule does not have any conformers.")
+    
+    # Get the first conformer; adjust if your molecule has multiple conformers
+    conformer = mol_copy.GetConformer(0)
+    
+    # Get all atoms coordinates find the geometrical center and translate the molecule
+    molecule_coordinates = []
+    for atom in mol_copy.GetAtoms():
+        position = conformer.GetAtomPosition(atom.GetIdx())
+        molecule_coordinates.append([position.x, position.y, position.z])
+        mol_coord = np.array(molecule_coordinates)
+    
+    # center the coordinates
+    centered_coords = mol_coord - np.mean(mol_coord, axis=0)
+    
+    # Loop through all atoms and modify the coordinates
+    for idx in range(conformer.GetNumAtoms()):
+        new_pos = Chem.rdGeometry.Point3D(centered_coords[idx, 0], centered_coords[idx, 1], centered_coords[idx, 2])
+        conformer.SetAtomPosition(idx, new_pos)
+
+    return mol_copy

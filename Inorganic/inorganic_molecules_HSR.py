@@ -16,17 +16,8 @@ sorted_files = sorted(os.listdir(f'{cwd}/molecules'), key=lambda x: int(x.split(
 for file in sorted_files:
     if file.endswith('.sdf'):
         molecules = load_molecules_from_sdf(f'{cwd}/molecules/{file}', removeHs=False, sanitize=False)
-    
-    ### ROTATE MOLECULES ###
-    rotated_molecules = []
-    for molecule in molecules:
-        angle1 = np.random.randint(0, 360)
-        angle2 = np.random.randint(0, 360)
-        angle3 = np.random.randint(0, 360)
-        mol = rotate_molecule(molecule, angle1, angle2, angle3)
-        rotated_molecules.append(mol)
         
-    fingerprints = [generate_fingerprint_from_molecule(molecule, DEFAULT_FEATURES, scaling='matrix', chirality=False) for molecule in rotated_molecules]
+    fingerprints = [generate_fingerprint_from_molecule(molecule, DEFAULT_FEATURES, scaling='matrix', chirality=False) for molecule in molecules]
 
     # COMPARE MOLECULES
     # Compute similarity between all pairs of fingerprints

@@ -131,45 +131,61 @@ with open(f'{os.getcwd()}/similarity_scores.txt', 'w') as f:
 matplotlib.rcParams['font.size'] = 10
 matplotlib.rcParams['font.family'] = 'Arial'
 
-fig, ((ax3, ax4), (ax5, ax6)) = plt.subplots(2, 2, figsize=(6.6, 6), sharex='col')
+fig, ((ax1, ax3), (ax2, ax4)) = plt.subplots(2, 2, figsize=(6.6, 6), sharex='col')
 
 # Define a list of markers to cycle through
-markers = ['o', 's', '^']
+markers = ['s', 'o', '^']
 
-# Plotting for ax3 and ax5 (left column) with different markers
+
+for i, label in enumerate(features_labels_neutrons):
+    marker = markers[i % len(markers)] 
+    # Make the marker of the second plot smaller to improve readability
+    if i == 1:
+            ax1.plot(range(1, len(file_names) + 1), similarity_scores_C13[label], label=label, marker=marker, markersize=4.5)
+    else:
+        ax1.plot(range(1, len(file_names) + 1), similarity_scores_C13[label], label=label, marker=marker)
+ax1.set_ylabel('Similarity Score')
+ax1.legend()
+
+for i, label in enumerate(features_labels_neutrons):
+    marker = markers[i % len(markers)] 
+    # Make the marker of the second plot smaller to improve readability
+    if i == 1:
+        ax2.plot(range(1, len(file_names) + 1), distances_C13_list[label], label=label, marker=marker, markersize=4.5)
+    else:
+        ax2.plot(range(1, len(file_names) + 1), distances_C13_list[label], label=label, marker=marker)
+ax2.set_xlabel('Number of Carbons')
+ax2.set_ylabel('Distance')
+ax2.legend()
+
 for i, label in enumerate(features_labels_charge):
     marker = markers[i % len(markers)] 
-    ax3.plot(range(1, len(file_names) + 1), similarity_scores_H[label], label=label, marker=marker)
+    # Make the marker of the second plot smaller for consistency
+    if i == 1:
+        ax3.plot(range(1, len(file_names) + 1), similarity_scores_H[label], label=label, marker=marker, markersize=4.5)
+    else:
+        ax3.plot(range(1, len(file_names) + 1), similarity_scores_H[label], label=label, marker=marker)
 ax3.set_ylabel('Similarity Score')
 ax3.legend()
 
 for i, label in enumerate(features_labels_charge):
     marker = markers[i % len(markers)]  
-    ax5.plot(range(1, len(file_names) + 1), distances_H_list[label], label=label, marker=marker)
-ax5.set_xlabel('Number of Carbons')
-ax5.set_ylabel('Distance')
-ax5.legend()
-
-# Plotting for ax4 and ax6 (right column) with different markers
-for i, label in enumerate(features_labels_neutrons):
-    marker = markers[i % len(markers)] 
-    ax4.plot(range(1, len(file_names) + 1), similarity_scores_C13[label], label=label, marker=marker)
-ax4.set_ylabel('Similarity Score')
+    # Make the marker of the second plot smaller for consistency
+    if i == 1:
+        ax4.plot(range(1, len(file_names) + 1), distances_H_list[label], label=label, marker=marker, markersize=4.5)
+    else:
+        ax4.plot(range(1, len(file_names) + 1), distances_H_list[label], label=label, marker=marker)
+ax4.set_xlabel('Number of Carbons')
+ax4.set_ylabel('Distance')
 ax4.legend()
 
-for i, label in enumerate(features_labels_neutrons):
-    marker = markers[i % len(markers)] 
-    ax6.plot(range(1, len(file_names) + 1), distances_C13_list[label], label=label, marker=marker)
-ax6.set_xlabel('Number of Carbons')
-ax6.set_ylabel('Distance')
-ax6.legend()
 
 # Explicitly setting x-ticks to ensure consistency across all plots
 x_ticks = range(1, len(file_names) + 1)
+ax1.set_xticks(x_ticks)
+ax2.set_xticks(x_ticks)
 ax3.set_xticks(x_ticks)
 ax4.set_xticks(x_ticks)
-ax5.set_xticks(x_ticks)
-ax6.set_xticks(x_ticks)
 
 plt.tight_layout(pad=1.0, h_pad=0.5, w_pad=0.5) 
 

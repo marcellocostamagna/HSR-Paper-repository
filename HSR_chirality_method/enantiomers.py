@@ -11,8 +11,8 @@ from usr import get_geometrical_center
 
 # MOLECULE SELECTION AND CHIRALITY
 # Select one or the other to visualize an enantiomer at the time
-# file_name = 'helicene_M.sdf'
-file_name = 'helicene_P.sdf'
+file_name = 'helicene_M.sdf'
+# file_name = 'helicene_P.sdf'
 
 # Select chirality to be True or False
 chirality = True
@@ -21,6 +21,8 @@ chirality = True
 cwd = os.getcwd()
 
 molecule = load_molecules_from_sdf(f'{cwd}/{file_name}', removeHs=False, sanitize=False)[0]
+
+molecule = center(molecule)
 
 molecule_coordinates = []
 for atom in molecule.GetAtoms():
@@ -53,8 +55,6 @@ pymol.finish_launching()
 molecule_path = f'{cwd}/{file_name}'
 
 cmd.load(molecule_path, 'molecule')
-
-
 
 w = 0.06 # cylinder width 
 h = 0.25 # cone hight

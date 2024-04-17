@@ -19,9 +19,6 @@ You can test the correct build by running:
 hsr -v
 ```
 
-It should appear the info: `hsr 0.1.0`(TODO: check it & update it).
-
-
 ### Run experiments
 
 This repository includes several folders containing data and scripts to reproduce the results presented in the HSR paper[TODO:link to paper].

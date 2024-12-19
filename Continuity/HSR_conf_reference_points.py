@@ -12,6 +12,9 @@ cwd = os.getcwd()
 
 np.set_printoptions(precision=4, suppress=True)
 
+
+### FUNCTIONS ###
+
 def original_array(molecule, removeHs=False):
     """
     Extract the true original (uncentered) coordinates of a molecule.
@@ -164,14 +167,25 @@ def create_rotated_axes_with_dotted_lines(PCs, name_prefix, molecule, base_color
     cmd.set('sphere_scale', 0.12, f'{name_prefix}_ref2')
     cmd.set('sphere_scale', 0.12, f'{name_prefix}_ref3')
 
+### MAIN ###
+
+# Choose what confermers to process: A or B
+
+conformer = 'A' # 'B'
+
+# Process both molecules
+if conformer == 'A':
+    # Conformer A
+    file1 = f'{cwd}/conformers/conformersA_H.sdf'
+    file2 = f'{cwd}/conformers/conformersA_Met.sdf'
+elif conformer == 'B':
+    # Conformer B
+    file1 = f'{cwd}/conformers/conformersB_H.sdf'
+    file2 = f'{cwd}/conformers/conformersB_Met.sdf'
 
 # Define colors for each molecule
 molecule1_color = [0.1, 0.6, 0.6]  # Deepteal
 molecule2_color = [0.698, 0.13, 0.13]  # Firebrick
-
-# Process both molecules
-file1 = f'{cwd}/molecules/conformersA_H.sdf'
-file2 = f'{cwd}/molecules/conformersA_Met.sdf'
 
 original_molecule1, molecule1, PCs1, transformed_molecule1, _ = process_molecule(file1)
 original_molecule2, molecule2, PCs2, transformed_molecule2, _ = process_molecule(file2)
@@ -212,9 +226,9 @@ pymol.finish_launching()
 cmd.load(f'{cwd}/rotated_molecule1.sdf', 'molecule1')
 cmd.load(f'{cwd}/rotated_molecule2.sdf', 'molecule2')
 
-# # Color the molecules
-# cmd.color('deepteal', 'molecule1')
-# cmd.color('firebrick', 'molecule2')
+# Set molecule colors
+cmd.color('deepteal', 'molecule1')
+cmd.color('firebrick', 'molecule2')
 
 # Create rotated axes with reference points and dotted lines
 create_rotated_axes_with_dotted_lines(PCs1, 'molecule1', original_molecule1, molecule1_color, np.zeros(3), transformed_molecule1)

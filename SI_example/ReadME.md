@@ -1,6 +1,6 @@
 ## Description
 
-This folder contains the script that performs the simple comparison described in the HSR paper SI under the section Mathematical illustration (TODO: link and consistency).
+This folder contains the script that performs the simple comparison described in the HSR's SI under the section Mathematical illustration.
 
 ## Instructions
 

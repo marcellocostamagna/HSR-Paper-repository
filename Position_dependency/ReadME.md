@@ -1,6 +1,6 @@
 ## Description
 
-This folder contains script of an experiment designed to show the dependency of the HSR similarity score to the positon of a feature change (specifically the change of an hydrogen to a deuterium) and the script to generate the image showing the results (Figure 8 in th HSR paper (TODO:consictency and link)).
+This folder contains a script of an experiment designed to show the dependency of the HSR similarity score to the positon of a feature change (specifically the change of an hydrogen to a deuterium) and the script to generate the image showing the results (Figure 8 in the HSR paper).
 
 
 ## Instructions

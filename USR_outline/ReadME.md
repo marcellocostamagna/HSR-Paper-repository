@@ -1,6 +1,6 @@
 ## Description
 
-This folder contains the script to generate the image used in Figure 1 (TODO: check consistency) in the HSR Paper (TODO: link), which shows the Ultrafast Shape Recognition (USR) outline of generating a molecular fingeprint.
+This folder contains the script to generate the image used in Figure 1 of the HSR Paper, which shows the Ultrafast Shape Recognition (USR) outline of generating a molecular fingeprint.
 
 ## Instructions
 

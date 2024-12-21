@@ -5,7 +5,7 @@ from rdkit import Chem
 from rdkit.Chem.rdMolDescriptors import GetUSRCAT, GetUSRScore, GetUSR
 from multiprocessing import Pool
 
-MAX_CORES = 5
+MAX_CORES = 8
 
 def read_molecules_from_sdf(sdf_file):
     supplier = Chem.SDMolSupplier(sdf_file, removeHs=False, sanitize=False)
@@ -41,6 +41,10 @@ def process_folder(args):
     results = {}
     
     if os.path.isdir(folder_path):
+        # Check if the actives and decoys files exist
+        if not os.path.exists(os.path.join(folder_path, "actives_final.sdf")) or not os.path.exists(os.path.join(folder_path, "decoys_final.sdf")):
+            print(f"Skipping folder {folder} because actives_final.sdf or decoys_final.sdf files do not exist.")
+            return results
         actives_file = os.path.join(folder_path, "actives_final.sdf")
         decoys_file = os.path.join(folder_path, "decoys_final.sdf")
         

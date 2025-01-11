@@ -1,4 +1,4 @@
-# HSR-Paper-repository
+# HSR-Paper-repository [![DOI](https://zenodo.org/badge/756043970.svg)](https://doi.org/10.5281/zenodo.14631654) 
 
 This repository collects the scripts used to generate results shown in the HSR paper (TODO:Link).
 

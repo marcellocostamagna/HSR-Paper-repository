@@ -141,9 +141,9 @@ for i, label in enumerate(features_labels_neutrons):
     marker = markers[i % len(markers)] 
     # Make the marker of the second plot smaller to improve readability
     if i == 1:
-            ax1.plot(range(1, len(file_names) + 1), similarity_scores_C13[label], label=label, marker=marker, markersize=4.5)
+            ax1.plot(range(3, len(file_names) + 3), similarity_scores_C13[label], label=label, marker=marker, markersize=4.5)
     else:
-        ax1.plot(range(1, len(file_names) + 1), similarity_scores_C13[label], label=label, marker=marker)
+        ax1.plot(range(3, len(file_names) + 3), similarity_scores_C13[label], label=label, marker=marker)
 ax1.set_ylabel('Similarity Score')
 ax1.legend()
 
@@ -151,9 +151,9 @@ for i, label in enumerate(features_labels_neutrons):
     marker = markers[i % len(markers)] 
     # Make the marker of the second plot smaller to improve readability
     if i == 1:
-        ax2.plot(range(1, len(file_names) + 1), distances_C13_list[label], label=label, marker=marker, markersize=4.5)
+        ax2.plot(range(3, len(file_names) + 3), distances_C13_list[label], label=label, marker=marker, markersize=4.5)
     else:
-        ax2.plot(range(1, len(file_names) + 1), distances_C13_list[label], label=label, marker=marker)
+        ax2.plot(range(3, len(file_names) + 3), distances_C13_list[label], label=label, marker=marker)
 ax2.set_xlabel('Number of Carbons')
 ax2.set_ylabel('Distance')
 ax2.legend()
@@ -162,9 +162,9 @@ for i, label in enumerate(features_labels_charge):
     marker = markers[i % len(markers)] 
     # Make the marker of the second plot smaller for consistency
     if i == 1:
-        ax3.plot(range(1, len(file_names) + 1), similarity_scores_H[label], label=label, marker=marker, markersize=4.5)
+        ax3.plot(range(3, len(file_names) + 3), similarity_scores_H[label], label=label, marker=marker, markersize=4.5)
     else:
-        ax3.plot(range(1, len(file_names) + 1), similarity_scores_H[label], label=label, marker=marker)
+        ax3.plot(range(3, len(file_names) + 3), similarity_scores_H[label], label=label, marker=marker)
 ax3.set_ylabel('Similarity Score')
 ax3.legend()
 
@@ -172,16 +172,16 @@ for i, label in enumerate(features_labels_charge):
     marker = markers[i % len(markers)]  
     # Make the marker of the second plot smaller for consistency
     if i == 1:
-        ax4.plot(range(1, len(file_names) + 1), distances_H_list[label], label=label, marker=marker, markersize=4.5)
+        ax4.plot(range(3, len(file_names) + 3), distances_H_list[label], label=label, marker=marker, markersize=4.5)
     else:
-        ax4.plot(range(1, len(file_names) + 1), distances_H_list[label], label=label, marker=marker)
+        ax4.plot(range(3, len(file_names) + 3), distances_H_list[label], label=label, marker=marker)
 ax4.set_xlabel('Number of Carbons')
 ax4.set_ylabel('Distance')
 ax4.legend()
 
 
 # Explicitly setting x-ticks to ensure consistency across all plots
-x_ticks = range(1, len(file_names) + 1)
+x_ticks = range(3, len(file_names) + 3)
 ax1.set_xticks(x_ticks)
 ax2.set_xticks(x_ticks)
 ax3.set_xticks(x_ticks)

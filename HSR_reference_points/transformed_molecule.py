@@ -12,8 +12,7 @@ cwd = os.getcwd()
 
 np.set_printoptions(precision=4, suppress=True)
 
-# molecule = load_molecules_from_sdf(f'{cwd}/original_molecule.sdf', removeHs=False, sanitize=True)[0]
-molecule = load_molecules_from_sdf(f'{cwd}/molecule.sdf', removeHs=True, sanitize=True)[0]
+molecule = load_molecules_from_sdf(f'{cwd}/original_molecule.sdf', removeHs=False, sanitize=True)[0]
 
 molecule_array = molecule_to_ndarray(molecule, features=None)
 
@@ -42,7 +41,7 @@ print(f'PC3 max: {PC3_max}')
     
 # save the molecule to an SDF file
 # writer = Chem.SDWriter(f'{cwd}/transformed_molecule.sdf')
-writer = Chem.SDWriter(f'{cwd}/transformed_molecule_new.sdf')
+writer = Chem.SDWriter(f'{cwd}/transformed_molecule.sdf')
 writer.write(new_molecule)
 writer.close()
 
@@ -51,7 +50,7 @@ pymol.finish_launching()
 
 # Load the molecule
 # molecule_path = f'{cwd}/transformed_molecule.sdf'
-molecule_path = f'{cwd}/transformed_molecule_new.sdf'
+molecule_path = f'{cwd}/transformed_molecule.sdf'
 cmd.load(molecule_path, 'molecule')
 
 # create_axes()
@@ -65,23 +64,20 @@ z = PC3_max+0.5 # cylinder length
 h = 0.25 # cone hight
 d = w * 1.618 # cone base diameter
 
-obj = [CYLINDER, 0.0, 0.0, 0.0,   x, 0.0, 0.0, w, 1.0, 0.75, 0.87, 1.0, 0.75, 0.87,
-       CYLINDER, 0.0, 0.0, 0.0, 0.0,   y, 0.0, w, 0.6, 0.1, 0.5, 0.6, 0.1, 0.5,
-       CYLINDER, 0.0, 0.0, 0.0, 0.0, 0.0,   z, w, 1.0, 0.7, 0.2, 1.0, 0.7, 0.2,
-       CONE,   x, 0.0, 0.0, h+x, 0.0, 0.0, d, 0.0, 1.0, 0.75, 0.87, 1.0, 0.75, 0.87, 1.0, 1.0, 
-       CONE, 0.0,   y, 0.0, 0.0, h+y, 0.0, d, 0.0, 0.6, 0.1, 0.5, 0.6, 0.1, 0.5, 1.0, 1.0, 
-       CONE, 0.0, 0.0,   z, 0.0, 0.0, h+z, d, 0.0, 1.0, 0.7, 0.2, 1.0, 0.7, 0.2, 1.0, 1.0]
+obj = [CYLINDER, 0.0, 0.0, 0.0,   x, 0.0, 0.0, w, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0,
+       CYLINDER, 0.0, 0.0, 0.0, 0.0,   y, 0.0, w, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0,
+       CYLINDER, 0.0, 0.0, 0.0, 0.0, 0.0,   z, w, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0,
+       CONE,   x, 0.0, 0.0, x+h, 0.0, 0.0, d, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 
+       CONE, 0.0,   y, 0.0, 0.0, y+h, 0.0, d, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 0.0, 1.0, 1.0, 
+       CONE, 0.0, 0.0,   z, 0.0, 0.0, z+h, d, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 1.0, 1.0, 1.0,]
 
 x_offset = x + h + 0.1  # Adjust label position beyond the tip of the cones
 y_offset = y + h + 0.1  # Adjust label position beyond the tip of the cones
 z_offset = z + h + 0.1  # Adjust label position beyond the tip of the cones
-# cmd.pseudoatom('label_x', pos=[x_offset, 0, 0], label='PC1', color=[1.0, 0.0, 0.0])
-# cmd.pseudoatom('label_y', pos=[0, y_offset, 0], label='PC2', color=[0.0, 1.0, 0.0])
-# cmd.pseudoatom('label_z', pos=[0, 0, z_offset], label='PC3', color=[0.0, 0.0, 1.0])
 
-# cmd.pseudoatom('label_x', pos=[x_offset, 0, 0], color=[1.0, 0.0, 0.0])
-# cmd.pseudoatom('label_y', pos=[0, y_offset, 0], color=[0.0, 1.0, 0.0])
-# cmd.pseudoatom('label_z', pos=[0, 0, z_offset], color=[0.0, 0.0, 1.0])
+# cmd.pseudoatom('label_x', pos=[x_offset, 0, 0], label='PC1')
+# cmd.pseudoatom('label_y', pos=[0, y_offset, 0], label='PC2')
+# cmd.pseudoatom('label_z', pos=[0, 0, z_offset], label='PC3')
 
 # Create pseudatoms at each point of interest
 ctd = [0,0,0]
@@ -89,15 +85,15 @@ ref_1 = [PC1_max, 0, 0]
 ref_2 = [0, PC2_max, 0]
 ref_3 = [0, 0, PC3_max]
 
-# cmd.pseudoatom('reference_point_1', pos=ctd, color='black', label='Ref_1', )
-# cmd.pseudoatom('reference_point_2', pos=ref_1, color='red', label='Ref_2')
-# cmd.pseudoatom('reference_point_3', pos=ref_2, color='green', label='Ref_3')
-# cmd.pseudoatom('reference_point_4', pos=ref_3, color='blue', label='Ref_4')
+# cmd.pseudoatom('reference_point_1', pos=ctd, label='Ref_1', )
+# cmd.pseudoatom('reference_point_2', pos=ref_1, label='Ref_2')
+# cmd.pseudoatom('reference_point_3', pos=ref_2, label='Ref_3')
+# cmd.pseudoatom('reference_point_4', pos=ref_3, label='Ref_4')
 
-cmd.pseudoatom('reference_point_1', pos=ctd, color='orange', label=' ', )
-cmd.pseudoatom('reference_point_2', pos=ref_1, color='lightpink', label=' ',)
-cmd.pseudoatom('reference_point_3', pos=ref_2, color='br5', label=' ',)
-cmd.pseudoatom('reference_point_4', pos=ref_3, color='brightorange', label=' ', )
+cmd.pseudoatom('reference_point_1', pos=ctd, color='black', label=' ', )
+cmd.pseudoatom('reference_point_2', pos=ref_1, color='red', label=' ',)
+cmd.pseudoatom('reference_point_3', pos=ref_2, color='green', label=' ',)
+cmd.pseudoatom('reference_point_4', pos=ref_3, color='blue', label=' ', )
 
 # Markers settings
 cmd.show('spheres', 'reference_point_1')
@@ -139,14 +135,14 @@ def create_dotted_line(start, end, color=[1.0, 1.0, 1.0], segments=10):
     return obj
 
 # Example usage
-dotted_line_obj = create_dotted_line(ref_1, PC1_max_coords, color=[1.0, 0.75, 0.87], segments=20)  # Red dotted line
+dotted_line_obj = create_dotted_line(ref_1, PC1_max_coords, color=[1.0, 0.0, 0.0], segments=20)  # Red dotted line
 cmd.load_cgo(dotted_line_obj, 'dotted_line_1')
 
 # Repeat for other reference points as needed
-dotted_line_obj_2 = create_dotted_line(ref_2, PC2_max_coords, color=[0.6, 0.1, 0.5], segments=20)  # Green dotted line
+dotted_line_obj_2 = create_dotted_line(ref_2, PC2_max_coords, color=[0.0, 1.0, 0.0], segments=20)  # Green dotted line
 cmd.load_cgo(dotted_line_obj_2, 'dotted_line_2')
 
-dotted_line_obj_3 = create_dotted_line(ref_3, PC3_max_coords, color=[1.0, 0.7, 0.2], segments=20)  # Blue dotted line
+dotted_line_obj_3 = create_dotted_line(ref_3, PC3_max_coords, color=[0.0, 0.0, 1.0], segments=20)  # Blue dotted line
 cmd.load_cgo(dotted_line_obj_3, 'dotted_line_3')
 
 

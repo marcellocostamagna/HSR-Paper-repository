@@ -15,13 +15,13 @@ molecule = load_molecules_from_sdf(f'{cwd}/original_molecule.sdf', removeHs=Fals
 molecule = center(molecule)
 
 # rotate the molecule
-angle1 = 150
-angle2 = 30
-angle3 = 120
+angle1 = -90
+angle2 = 0
+angle3 = 180
 mol = rotate_molecule(molecule, angle1, angle2, angle3)
 
 # translate the molecule with rdkit
-mol = translate_molecule(mol,2,2,2)
+mol = translate_molecule(mol,0,2,0)
 
 # Save the molecule
 # save the molecule to an SDF file
@@ -40,7 +40,7 @@ cmd.load(molecule_path, 'molecule')
 w = 0.06 # cylinder width 
 x = 4 # cylinder length
 y = 4 # cylinder length
-z = 6 # cylinder length
+z = 4 # cylinder length
 h = 0.25 # cone hight
 d = w * 1.618 # cone base diameter
 

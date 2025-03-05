@@ -1,4 +1,4 @@
-linkage_test_5
+linkage_isomerism_1
   PyMOL2.5          3D                             0
 
  48 51  0  0  0  0  0  0  0  0999 V2000
@@ -101,9 +101,10 @@ linkage_test_5
  45 46  1  0  0  0  0
  45 47  1  0  0  0  0
  47 48  1  0  0  0  0
+M  CHG  1  1  2
 M  END
 $$$$
-linkage_test_6
+linkage_ismoerism_2
   PyMOL2.5          3D                             0
 
  48 51  0  0  0  0  0  0  0  0999 V2000
@@ -206,5 +207,6 @@ linkage_test_6
  45 46  1  0  0  0  0
  45 47  1  0  0  0  0
  47 48  1  0  0  0  0
+M  CHG  1  1  2
 M  END
 $$$$

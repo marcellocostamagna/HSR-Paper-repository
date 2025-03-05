@@ -1,4 +1,4 @@
-fac.xyz
+fac_isomer
  OpenBabel02262420033D
 
  63 71  0  0  1  0  0  0  0  0999 V2000
@@ -136,9 +136,10 @@ fac.xyz
  60 33  1  0  0  0  0
  61 34  1  0  0  0  0
  63 37  1  0  0  0  0
+M  CHG  1  1  2
 M  END
 $$$$
-mer.xyz
+mer_isomer
  OpenBabel02262420043D
 
  63 71  0  0  1  0  0  0  0  0999 V2000
@@ -276,5 +277,6 @@ mer.xyz
  59 32  1  0  0  0  0
  62 37  1  0  0  0  0
  63 37  1  0  0  0  0
+M  CHG  1  1  2
 M  END
 $$$$

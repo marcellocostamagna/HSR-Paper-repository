@@ -38,7 +38,15 @@ for file in sorted_files:
             print(f"(rdkit) USR: {similarity:.4f}")
             
     usrcats = [GetUSRCAT(mol) for mol in rotated_molecules]
+
     for i in range(n_molecules):
         for j in range(i+1, n_molecules):
             similarity = GetUSRScore(usrcats[i], usrcats[j])
             print(f"(rdkit) USRCAT: {similarity:.4f} \n")
+            
+    print(f'USRCAT Fingerprints:')  
+    for idx, usrcat in enumerate(usrcats):
+        truncated_usrcat = [round(val, 4) for val in usrcat]
+        print(f'Molecule {idx + 1}: {truncated_usrcat}')
+    
+    print('\n')

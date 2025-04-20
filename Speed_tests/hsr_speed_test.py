@@ -121,7 +121,12 @@ def main():
     sims = [hsr.similarity.compute_similarity_score(qfp, fp)
             for fp in fps if not np.array_equal(fp, qfp)]
     sim_time = time.time() - t0
-    sort_time = time.time() - (t0 := time.time())
+    
+    # Sort similarities
+    t0 = time.time()
+    sorted_sims = sorted(sims, reverse=True)
+    sort_time = time.time() - t0
+    print(sorted_sims[:10])
 
     print(f"✅ Molecules processed      : {len(fps):,}")
     print(f"✅ Files downloaded         : {len(set(sources)):,}")

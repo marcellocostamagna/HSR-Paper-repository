@@ -42,7 +42,7 @@ for _ in range(num_experiments):
 # Compute final averages
 final_timings = {key: np.mean(timings[key]) for key in timings}
 
-print('Final averaged results over 10 experiments:')
+print(f'Final averaged results over {num_experiments} experiments:')
 for feature in ['3D', '4D', '5D', '6D']:
     print(f'\n{feature} timings:')
     print(f'Average time: {round(final_timings[feature], 5)}')

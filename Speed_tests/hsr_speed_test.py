@@ -119,7 +119,7 @@ def main():
     qfp = random.choice(fps)
     t0 = time.time()
     sims = [hsr.similarity.compute_similarity_score(qfp, fp)
-            for fp in fps if not np.array_equal(fp, qfp)]
+            for fp in fps]
     sim_time = time.time() - t0
     
     # Sort similarities

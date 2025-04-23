@@ -6,11 +6,13 @@ channels:
   - anaconda
 dependencies:
   - numpy
-  - scipy
-  - rdkit
-  - pymol
-  - anaconda::pyqt
   - oddt
   - pip
+  - pymol
+  - rdkit
+  - scipy
+  - anaconda::pyqt
+  - conda-forge::tqdm
+  - conda-forge::bs4
   - pip:
     - hsr
